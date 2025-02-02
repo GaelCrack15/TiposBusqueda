@@ -1,0 +1,28 @@
+<div class="search-container">
+  <h2>Búsqueda Simple</h2>
+  <div class="search-box">
+    <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      placeholder="Ingrese término de búsqueda"
+      (keyup.enter)="onSearch()"
+    >
+    <button (click)="onSearch()">Buscar</button>
+  </div>
+
+  <div class="results" *ngIf="searchResults.length > 0">
+    <h3>Resultados de la búsqueda:</h3>
+    <div class="result-item" *ngFor="let result of searchResults">
+      <h4>{{ result.title }}</h4>
+      <p>{{ result.description }}</p>
+      <div class="result-meta">
+        <span>Categoría: {{ result.category }}</span>
+        <span>Fecha: {{ result.date }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="no-results" *ngIf="searching && searchTerm && searchResults.length === 0">
+    <p>No se encontraron resultados para tu búsqueda.</p>
+  </div>
+</div>
