@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SearchResult, SearchService } from '../../services/search.service';
@@ -10,7 +10,7 @@ import { SearchResult, SearchService } from '../../services/search.service';
   templateUrl: './advanced-search.component.html',
   styleUrl: './advanced-search.component.css'
 })
-export class AdvancedSearchComponent {
+export class AdvancedSearchComponent implements OnInit{
   searchCriteria = {
     keyword: '',
     category: '',
@@ -19,10 +19,15 @@ export class AdvancedSearchComponent {
   };
   searchResults: SearchResult[] = [];
   searching: boolean = false;
+  categories: any[] = [];
 
   constructor(
     private searchService: SearchService
   ) {}
+
+  ngOnInit() {
+    this.categories = [...new Set(this.searchService.mockData.map(movie => movie.category))];
+  }
 
   onSearch() {
     this.searchResults = this.searchService.advancedSearch(this.searchCriteria);
