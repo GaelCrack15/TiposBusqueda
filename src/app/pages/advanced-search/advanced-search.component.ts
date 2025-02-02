@@ -20,7 +20,9 @@ export class AdvancedSearchComponent {
   searchResults: SearchResult[] = [];
   searching: boolean = false;
 
-  constructor(private searchService: SearchService) {}
+  constructor(
+    private searchService: SearchService
+  ) {}
 
   onSearch() {
     this.searchResults = this.searchService.advancedSearch(this.searchCriteria);

@@ -15,7 +15,9 @@ export class SimpleSearchComponent {
   searching: boolean = false;
   searchResults: SearchResult[] = [];
 
-  constructor(private searchService: SearchService) {}
+  constructor(
+    private searchService: SearchService
+  ) {}
 
   onSearch() {
     this.searchResults = this.searchService.simpleSearch(this.searchTerm);
